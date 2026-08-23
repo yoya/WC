@@ -71,18 +71,24 @@ end
 
 --- 自分の窓番号を決め直す。
 --- load 直後は未ログインで player が取れないので、login でも呼ぶ。
+--- 窓番号はキャラではなく窓に付いているので、一度決まったら消さない。
+--- 上書きするのは AccountList にあるキャラでログインしたときだけ。
+--- logout もキャラ選択画面も AccountList に無いキャラも、番号を持ったままにする。
 local function update_my_index(event)
     local player = windower.ffxi.get_player()
     if player == nil or player.name == nil then
-	my_index = nil  -- まだ分からない。login で取り直す
-	return
+	return  -- まだ分からない。login で取り直す
     end
-    my_index = name_to_index[player.name]
-    if my_index == nil then
+    local index = name_to_index[player.name]
+    if index ~= nil then
+	my_index = index
+	say(COLOR_INFO, ("[%s] window #%d %s"):format(event, my_index, player.name))
+    elseif my_index ~= nil then
+	say(COLOR_WARN, ("[%s] %s は AccountList にありません。この窓は window #%d のままです")
+		:format(event, player.name, my_index))
+    else
 	say(COLOR_WARN, ("[%s] %s は AccountList にありません。この窓は切り替え先になりません")
 		:format(event, player.name))
-    else
-	say(COLOR_INFO, ("[%s] window #%d %s"):format(event, my_index, player.name))
     end
 end
 
@@ -181,10 +187,6 @@ end)
 
 windower.register_event('login', function()
     update_my_index("login")
-end)
-
-windower.register_event('logout', function()
-    my_index = nil  -- 前のキャラの窓番号を次のログインに持ち越さない
 end)
 
 windower.register_event('unload', function()
