@@ -1,0 +1,7 @@
+# エディタのバックアップ・自動保存
+*~
+\#*\#
+.\#*
+
+# ローカル設定 (data/settings.xml.sample を追跡する)
+data/settings.xml

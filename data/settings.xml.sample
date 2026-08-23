@@ -1,0 +1,21 @@
+<?xml version="1.1" ?>
+<!--
+    data/settings.xml にコピーして使う。
+    タグの番号がそのまま窓番号 (Win+1 / Alt+1 / Ctrl+Tab の順番) になる。
+    1 つの窓で複数キャラを使い分けるなら、カンマ区切りで全部並べる。
+-->
+<settings>
+    <global>
+        <AccountList>
+            <1>
+                Apuapu, Apuchan, Apucha
+            </1>
+            <2>
+                Upaupa, Upasan, Upatan
+            </2>
+            <3>
+                Paupau, Pautan
+            </3>
+        </AccountList>
+    </global>
+</settings>
