@@ -38,8 +38,8 @@ wc help
 
 ```xml
 <AccountList>
-    <1> Apuapu, Apuchan </1>
-    <2> Upaupa </2>
+    <1> Taro, Jiro </1>
+    <2> Hanako </2>
 </AccountList>
 ```
 
